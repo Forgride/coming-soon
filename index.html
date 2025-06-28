@@ -195,7 +195,7 @@
             <!-- Custom Styled Form -->
             <div class="max-w-lg mx-auto">
                 <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
-                    <form id="waitlist-form" action="#" method="post" class="space-y-6">
+                    <form id="waitlist-form" onsubmit="return false;" class="space-y-6">
                         <div class="text-left">
                             <label for="email" class="block text-sm font-medium text-white mb-2">
                                 Email Address <span class="text-pink-300">*</span>
@@ -229,8 +229,9 @@
                         </div>
                         
                         <button 
-                            type="submit"
+                            type="button"
                             id="submit-btn"
+                            onclick="handleFormSubmit()"
                             class="w-full bg-white text-purple-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/50 shadow-lg"
                         >
                             <span class="flex items-center justify-center space-x-2">
