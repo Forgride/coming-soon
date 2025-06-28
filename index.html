@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ForGride - The Future of Hiring</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
@@ -193,31 +192,22 @@
                 Join our exclusive early access list and get priority access when we launch
             </p>
             
-            <div class="max-w-md mx-auto">
-                <div class="flex gap-4 mb-6">
-                    <input 
-                        type="email" 
-                        placeholder="Enter your email address" 
-                        class="flex-1 px-6 py-4 rounded-full text-gray-900 focus:outline-none focus:ring-4 focus:ring-blue-300"
-                        id="email-input"
-                    >
-                    <button 
-                        class="bg-white text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        onclick="handleEmailSignup()"
-                        id="signup-btn"
-                    >
-                        <span id="btn-text">Join Waitlist</span>
-                        <span id="btn-spinner" class="hidden">
-                            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-900 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                            Joining...
-                        </span>
-                    </button>
+            <!-- Google Form Embed -->
+            <div class="max-w-lg mx-auto">
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                    <iframe 
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSf2Zo8wKozqOMHAvkocYQQYGjn-oacJfGUI3d-rl5XRDqZwYA/viewform?embedded=true" 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0"
+                        class="rounded-lg"
+                        style="background: white; border-radius: 12px;">
+                        Loading…
+                    </iframe>
                 </div>
-                <div id="message" class="mb-4 hidden"></div>
-                <p class="text-sm text-blue-200">No spam. Unsubscribe anytime. Early access priority guaranteed.</p>
+                <p class="text-sm text-blue-200 mt-4">No spam. Unsubscribe anytime. Early access priority guaranteed.</p>
             </div>
         </div>
     </section>
@@ -246,106 +236,13 @@
     </footer>
 
     <script>
-        // Initialize Supabase
-        const supabaseUrl = 'https://altynzshbuwozmyfaafb.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFsdHluenNoYnV3b3pteWZhYWZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk1MjY3OTIsImV4cCI6MjA2NTEwMjc5Mn0.RdzhgTceQO3si9t-LETlTevoj1gVQMzTlcivs09kb-Y';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
+    <script>
         function scrollToSignup() {
             document.getElementById('email-signup').scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
         }
-
-        function showMessage(message, isError = false) {
-            const messageDiv = document.getElementById('message');
-            messageDiv.className = `mb-4 p-4 rounded-full text-center ${isError ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`;
-            messageDiv.textContent = message;
-            messageDiv.classList.remove('hidden');
-            
-            // Hide message after 5 seconds
-            setTimeout(() => {
-                messageDiv.classList.add('hidden');
-            }, 5000);
-        }
-
-        function toggleButton(loading) {
-            const btn = document.getElementById('signup-btn');
-            const btnText = document.getElementById('btn-text');
-            const btnSpinner = document.getElementById('btn-spinner');
-            
-            if (loading) {
-                btn.disabled = true;
-                btnText.classList.add('hidden');
-                btnSpinner.classList.remove('hidden');
-            } else {
-                btn.disabled = false;
-                btnText.classList.remove('hidden');
-                btnSpinner.classList.add('hidden');
-            }
-        }
-
-        async function handleEmailSignup() {
-            const emailInput = document.getElementById('email-input');
-            const email = emailInput.value.trim();
-            
-            // Basic email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!email || !emailRegex.test(email)) {
-                showMessage('Please enter a valid email address.', true);
-                return;
-            }
-
-            toggleButton(true);
-
-            try {
-                // Insert email into Supabase
-                const { data, error } = await supabase
-                    .from('waitlist_signups')
-                    .insert([
-                        {
-                            email: email,
-                            user_agent: navigator.userAgent,
-                            referrer: document.referrer || null
-                        }
-                    ])
-                    .select();
-
-                if (error) {
-                    // Handle duplicate email error
-                    if (error.code === '23505') {
-                        showMessage('You\'re already on our waitlist! We\'ll be in touch soon.', false);
-                    } else {
-                        console.error('Supabase error:', error);
-                        showMessage('Something went wrong. Please try again.', true);
-                    }
-                } else {
-                    showMessage('🎉 Success! You\'re now on our early access waitlist!', false);
-                    emailInput.value = '';
-                    
-                    // Optional: Track signup event
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'signup', {
-                            event_category: 'engagement',
-                            event_label: 'waitlist'
-                        });
-                    }
-                }
-            } catch (err) {
-                console.error('Network error:', err);
-                showMessage('Network error. Please check your connection and try again.', true);
-            } finally {
-                toggleButton(false);
-            }
-        }
-
-        // Allow Enter key to submit
-        document.getElementById('email-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                handleEmailSignup();
-            }
-        });
 
         // Add smooth scrolling for any future anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
