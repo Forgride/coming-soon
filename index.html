@@ -57,7 +57,7 @@
 
             <!-- CTA Button -->
             <div class="mb-12">
-                <button class="pulse-glow bg-white text-gray-900 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105">
+                <button onclick="scrollToSignup()" class="pulse-glow bg-white text-gray-900 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
                     Get Early Access
                 </button>
             </div>
@@ -185,7 +185,7 @@
     </section>
 
     <!-- Email Signup -->
-    <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+    <section id="email-signup" class="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
         <div class="container mx-auto px-6 text-center">
             <h3 class="text-3xl md:text-4xl font-bold mb-6">Be the First to Transform Hiring</h3>
             <p class="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
@@ -236,6 +236,13 @@
     </footer>
 
     <script>
+        function scrollToSignup() {
+            document.getElementById('email-signup').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
         function handleEmailSignup() {
             const email = document.getElementById('email-input').value;
             if (email && email.includes('@')) {
