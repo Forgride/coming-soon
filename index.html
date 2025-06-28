@@ -297,19 +297,11 @@
                 }
                 
                 // Show loading state
-                submitButton.innerHTML = `
-                    <span class="flex items-center justify-center space-x-2">
-                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        <span>Joining...</span>
-                    </span>
-                `;
+                submitButton.innerHTML = 'Joining...';
                 submitButton.disabled = true;
                 
                 try {
-                    
+                    // Replace with your actual Formspree endpoint
                     const response = await fetch('https://formspree.io/f/xwpbaaqo', {
                         method: 'POST',
                         headers: {
@@ -318,27 +310,27 @@
                         body: JSON.stringify({
                             email: email,
                             role: role,
-                            message: `ForGride Waitlist Signup - Role: ${role}`
+                            message: 'ForGride Waitlist Signup - Role: ' + role
                         })
                     });
                     
                     if (response.ok) {
                         // Success
-                        alert('🎉 Thank you for joining our waitlist! We\'ll be in touch soon with early access details.');
+                        alert('Thank you for joining our waitlist! We will be in touch soon with early access details.');
                         form.reset();
                     } else {
                         throw new Error('Network response was not ok');
                     }
                 } catch (error) {
                     // Fallback - store in localStorage and show success
-                    console.log('Storing locally:', { email, role, timestamp: new Date().toISOString() });
+                    console.log('Storing locally:', { email: email, role: role, timestamp: new Date().toISOString() });
                     
                     // Store in localStorage as backup
                     const signups = JSON.parse(localStorage.getItem('forgride-signups') || '[]');
-                    signups.push({ email, role, timestamp: new Date().toISOString() });
+                    signups.push({ email: email, role: role, timestamp: new Date().toISOString() });
                     localStorage.setItem('forgride-signups', JSON.stringify(signups));
                     
-                    alert('🎉 Thank you for joining our waitlist! We\'ll be in touch soon with early access details.');
+                    alert('Thank you for joining our waitlist! We will be in touch soon with early access details.');
                     form.reset();
                 }
                 
@@ -347,6 +339,7 @@
                 submitButton.disabled = false;
             });
         });
+    </script>
 
         // Add smooth scrolling for any future anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
