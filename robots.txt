@@ -1,0 +1,45 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://forgride.com/sitemap.xml
+Sitemap: https://forgride.com/sitemap-images.xml
+
+# Block admin areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /temp/
+
+# Allow important pages
+Allow: /
+Allow: /about
+Allow: /privacy
+Allow: /terms
+Allow: /contact
+Allow: /blog
+
+# Crawl delay
+Crawl-delay: 1
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+
+# Block spam bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
