@@ -1,0 +1,74 @@
+{
+    "name": "ForGride - AI-Powered Hiring Platform",
+    "short_name": "ForGride",
+    "description": "Revolutionary recruitment through conversational AI agents that understand true potential beyond resumes",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1f2937",
+    "theme_color": "#667eea",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "en",
+    "categories": ["business", "productivity", "recruitment"],
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Job Seekers",
+            "short_name": "Job Seekers",
+            "description": "Find perfect opportunities through AI conversations",
+            "url": "/job-seekers",
+            "icons": [{ "src": "/icons/job-seeker-icon.png", "sizes": "96x96" }]
+        },
+        {
+            "name": "Recruiters",
+            "short_name": "Recruiters",
+            "description": "Find perfect candidates through AI matching",
+            "url": "/recruiters",
+            "icons": [{ "src": "/icons/recruiter-icon.png", "sizes": "96x96" }]
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/screenshots/desktop-1.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "ForGride Dashboard - Desktop View"
+        },
+        {
+            "src": "/screenshots/mobile-1.png",
+            "sizes": "375x812",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "ForGride Dashboard - Mobile View"
+        }
+    ]
+}
