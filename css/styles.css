@@ -1,0 +1,130 @@
+/* ForGride - External CSS File for Better Performance */
+
+/* Font Family */
+body { 
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+    scroll-behavior: smooth;
+}
+
+/* Custom Gradients and Backgrounds */
+.gradient-bg { 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+}
+
+.glass-card { 
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Animations */
+.floating-animation { 
+    animation: float 6s ease-in-out infinite; 
+}
+
+@keyframes float { 
+    0%, 100% { transform: translateY(0px); } 
+    50% { transform: translateY(-20px); } 
+}
+
+.pulse-glow { 
+    animation: pulse-glow 2s infinite; 
+}
+
+@keyframes pulse-glow { 
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.4); 
+    } 
+    50% { 
+        box-shadow: 0 0 40px rgba(102, 126, 234, 0.8); 
+    } 
+}
+
+/* Interactive Elements */
+.feature-card { 
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.feature-card:hover { 
+    transform: translateY(-10px); 
+}
+
+.feature-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+}
+
+/* Performance Optimizations */
+.floating-animation {
+    will-change: transform;
+}
+
+.feature-card {
+    will-change: transform, opacity;
+}
+
+.pulse-glow {
+    will-change: box-shadow;
+}
+
+/* Critical CSS for above-the-fold content */
+@media (prefers-reduced-motion: reduce) {
+    .floating-animation,
+    .pulse-glow,
+    .feature-card {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .floating-animation {
+        animation-duration: 4s;
+    }
+    
+    .glass-card {
+        backdrop-filter: blur(5px);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .floating-animation,
+    .pulse-glow {
+        animation: none;
+    }
+    
+    .gradient-bg {
+        background: #667eea;
+    }
+    
+    .glass-card {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #ccc;
+    }
+}
