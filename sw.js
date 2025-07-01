@@ -4,9 +4,9 @@ const urlsToCache = [
     '/',
     '/css/styles.css',
     '/js/app.js',
-    '/favicon.ico',
-    '/android-chrome-192x192.png',
-    '/android-chrome-512x512.png',
+    '/icons/favicon.ico',
+    '/icons/android-chrome-192x192.png',
+    '/icons/android-chrome-512x512.png',
     'https://cdn.tailwindcss.com',
     'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap'
 ];
